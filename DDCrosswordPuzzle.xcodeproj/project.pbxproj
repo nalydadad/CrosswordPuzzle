@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		0F5469F01DF53AEE00D7070D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5469EF1DF53AEE00D7070D /* main.m */; };
 		0F5469F31DF53AEE00D7070D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5469F21DF53AEE00D7070D /* AppDelegate.m */; };
-		0F5469F61DF53AEE00D7070D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5469F51DF53AEE00D7070D /* ViewController.m */; };
+		0F5469F61DF53AEE00D7070D /* DDPuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5469F51DF53AEE00D7070D /* DDPuzzleViewController.m */; };
 		0F5469F91DF53AEE00D7070D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F5469F71DF53AEE00D7070D /* Main.storyboard */; };
 		0F5469FB1DF53AEE00D7070D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F5469FA1DF53AEE00D7070D /* Assets.xcassets */; };
 		0F5469FE1DF53AEE00D7070D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F5469FC1DF53AEE00D7070D /* LaunchScreen.storyboard */; };
 		0F546A091DF53AEE00D7070D /* DDCrosswordPuzzleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F546A081DF53AEE00D7070D /* DDCrosswordPuzzleTests.m */; };
 		0F546A141DF53AEE00D7070D /* DDCrosswordPuzzleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F546A131DF53AEE00D7070D /* DDCrosswordPuzzleUITests.m */; };
+		0F546A231DF53B8600D7070D /* DDPuzzleUnitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F546A221DF53B8600D7070D /* DDPuzzleUnitView.m */; };
+		0F546A261DF53BC900D7070D /* DDPuzzleData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F546A251DF53BC900D7070D /* DDPuzzleData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +41,8 @@
 		0F5469EF1DF53AEE00D7070D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0F5469F11DF53AEE00D7070D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0F5469F21DF53AEE00D7070D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0F5469F41DF53AEE00D7070D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		0F5469F51DF53AEE00D7070D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0F5469F41DF53AEE00D7070D /* DDPuzzleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDPuzzleViewController.h; sourceTree = "<group>"; };
+		0F5469F51DF53AEE00D7070D /* DDPuzzleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDPuzzleViewController.m; sourceTree = "<group>"; };
 		0F5469F81DF53AEE00D7070D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0F5469FA1DF53AEE00D7070D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F5469FD1DF53AEE00D7070D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +53,10 @@
 		0F546A0F1DF53AEE00D7070D /* DDCrosswordPuzzleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DDCrosswordPuzzleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F546A131DF53AEE00D7070D /* DDCrosswordPuzzleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDCrosswordPuzzleUITests.m; sourceTree = "<group>"; };
 		0F546A151DF53AEE00D7070D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F546A211DF53B8600D7070D /* DDPuzzleUnitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDPuzzleUnitView.h; sourceTree = "<group>"; };
+		0F546A221DF53B8600D7070D /* DDPuzzleUnitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDPuzzleUnitView.m; sourceTree = "<group>"; };
+		0F546A241DF53BC900D7070D /* DDPuzzleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDPuzzleData.h; sourceTree = "<group>"; };
+		0F546A251DF53BC900D7070D /* DDPuzzleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDPuzzleData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +109,12 @@
 			children = (
 				0F5469F11DF53AEE00D7070D /* AppDelegate.h */,
 				0F5469F21DF53AEE00D7070D /* AppDelegate.m */,
-				0F5469F41DF53AEE00D7070D /* ViewController.h */,
-				0F5469F51DF53AEE00D7070D /* ViewController.m */,
+				0F546A241DF53BC900D7070D /* DDPuzzleData.h */,
+				0F546A251DF53BC900D7070D /* DDPuzzleData.m */,
+				0F546A211DF53B8600D7070D /* DDPuzzleUnitView.h */,
+				0F546A221DF53B8600D7070D /* DDPuzzleUnitView.m */,
+				0F5469F41DF53AEE00D7070D /* DDPuzzleViewController.h */,
+				0F5469F51DF53AEE00D7070D /* DDPuzzleViewController.m */,
 				0F5469F71DF53AEE00D7070D /* Main.storyboard */,
 				0F5469FA1DF53AEE00D7070D /* Assets.xcassets */,
 				0F5469FC1DF53AEE00D7070D /* LaunchScreen.storyboard */,
@@ -276,9 +286,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F5469F61DF53AEE00D7070D /* ViewController.m in Sources */,
+				0F546A231DF53B8600D7070D /* DDPuzzleUnitView.m in Sources */,
+				0F5469F61DF53AEE00D7070D /* DDPuzzleViewController.m in Sources */,
 				0F5469F31DF53AEE00D7070D /* AppDelegate.m in Sources */,
 				0F5469F01DF53AEE00D7070D /* main.m in Sources */,
+				0F546A261DF53BC900D7070D /* DDPuzzleData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
