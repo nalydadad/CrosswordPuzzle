@@ -16,5 +16,5 @@
 @interface DDPuzzleUnitView : UIView
 
 @property(weak, nonatomic)id<DDPuzzleUnitViewDelegate>delegate;
-@property(strong, nonatomic)UITextView *textView;
+@property(strong, nonatomic)UILabel *label;
 @end

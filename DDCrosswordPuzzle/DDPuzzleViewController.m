@@ -12,7 +12,9 @@
 @interface DDPuzzleViewController() {
     DDPuzzleUnitView *__strong*focusView;
 }
-@property(strong, nonatomic)NSMutableArray *puzzleUnits;
+@property(assign, nonatomic) NSInteger selected;
+@property(assign, nonatomic) float offset;
+@property(strong, nonatomic) NSMutableArray<DDPuzzleUnitView*> *puzzleUnits;
 @property(strong, nonatomic)UITextField *textfield;
 
 @end
@@ -53,23 +55,35 @@
 }
 
 - (void) keyboardWillShow:(NSNotification*)notification {
-
+    float duration = [[[notification userInfo] valueForKey:@"UIKeyboardAnimationDurationUserInfoKey"] floatValue];
+    CGRect frame = [[[notification userInfo] valueForKey:@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
+    [UIView animateWithDuration:duration animations:^{
+        if(self.textfield.frame.origin.y > frame.origin.y) {
+            CGRect originView =  self.view.frame;
+            originView.origin.y -= frame.size.height;
+            self.view.frame = originView;
+        }
+    }];
 }
 
 - (void) keyboardWillHide:(NSNotification*)notification {
-    
+    float duration = [[[notification userInfo] valueForKey:@"UIKeyboardAnimationDurationUserInfoKey"] floatValue];
+    [UIView animateWithDuration:duration animations:^{
+        if(!CGPointEqualToPoint(self.view.frame.origin, CGPointMake(0, 0))) {
+            self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        }
+    }];
 }
 
 
 -(void)isTapped:(DDPuzzleUnitView *)view {
     [self.textfield removeFromSuperview];
-    self->focusView = &view;
-    self.textfield.text = (*self->focusView).textView.text;
+    self.selected = [self.puzzleUnits indexOfObject:view];
+    self.textfield.text = self.puzzleUnits[self.selected].label.text;
     self.textfield.frame = view.frame;
     [self.view addSubview:self.textfield];
     
 }
-
 - (void) textChanged:(UITextField*)textField {
     if(textField.text.length > 1) {
         NSString *text = textField.text;
@@ -79,8 +93,9 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self.textfield removeFromSuperview];
-    (*self->focusView).textView.text = self.textfield.text;
+    self.puzzleUnits[self.selected].label.text = self.textfield.text;
     self.textfield.text = @"";
+    self.selected = -1;
     return YES;
 }
 
