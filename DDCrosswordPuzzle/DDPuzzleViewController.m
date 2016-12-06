@@ -103,7 +103,6 @@
     [self.textfield removeFromSuperview];
     self.puzzleUnits[self.selected].label.text = self.textfield.text;
     self.textfield.text = @"";
-    self.selected = -1;
     return YES;
 }
 
