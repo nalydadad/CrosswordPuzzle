@@ -8,15 +8,11 @@
 
 #import "DDPuzzleViewController.h"
 
-
-@interface DDPuzzleViewController() {
-    DDPuzzleUnitView *__strong*focusView;
-}
+@interface DDPuzzleViewController()
 @property(assign, nonatomic) NSInteger selected;
 @property(assign, nonatomic) float offset;
 @property(strong, nonatomic) NSMutableArray<DDPuzzleUnitView*> *puzzleUnits;
-@property(strong, nonatomic)UITextField *textfield;
-
+@property(strong, nonatomic) UITextField *textfield;
 @end
 
 
@@ -24,30 +20,39 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    self.textfield = [[UITextField alloc]init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    self.textfield = [[UITextField alloc] init];
     [self.textfield addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.textfield setBackgroundColor:[UIColor greenColor]];
+    [self.textfield setTextAlignment:NSTextAlignmentCenter];
     self.textfield.delegate = self;
+    
     self.puzzleUnits  = [[NSMutableArray alloc] init];
+    [self generatePuzzleMap];
     [self addPuzzleMap];
-    [self registerPuzzleUnit];
 }
 
-- (void) addPuzzleMap {
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void) generatePuzzleMap {
     [self.puzzleUnits removeAllObjects];
     CGRect frame = [[UIScreen mainScreen] bounds];
     float unitWidth = frame.size.width / 8;
-    DDPuzzleUnitView *puzzleUnitView = [[DDPuzzleUnitView alloc]initWithFrame:CGRectMake(0, 0, unitWidth, unitWidth)];
-    DDPuzzleUnitView *puzzleUnitView1 = [[DDPuzzleUnitView alloc]initWithFrame:CGRectMake(unitWidth, unitWidth, unitWidth, unitWidth)];
-    DDPuzzleUnitView *puzzleUnitView2 = [[DDPuzzleUnitView alloc]initWithFrame:CGRectMake(200, 500, unitWidth, unitWidth)];
-    [self.puzzleUnits addObject:puzzleUnitView];
-    [self.puzzleUnits addObject:puzzleUnitView1];
-    [self.puzzleUnits addObject:puzzleUnitView2];
+    
+    for(int c=0; c<8; c++) {
+        for(int r=0; r<frame.size.height / unitWidth - 1; r++) {
+            DDPuzzleUnitView *puzzleUnitView = [[DDPuzzleUnitView alloc]
+                initWithFrame:CGRectMake(0 + c*unitWidth, 0 + r*unitWidth, unitWidth, unitWidth)];
+            [self.puzzleUnits addObject:puzzleUnitView];
+        }
+    }
 }
 
-- (void)registerPuzzleUnit {
+- (void)addPuzzleMap {
     for (DDPuzzleUnitView *puzzleUnit in self.puzzleUnits) {
         puzzleUnit.delegate = self;
         [self.view addSubview:puzzleUnit];
@@ -55,13 +60,16 @@
 }
 
 - (void) keyboardWillShow:(NSNotification*)notification {
+    NSLog(@"%@", [notification userInfo]);
     float duration = [[[notification userInfo] valueForKey:@"UIKeyboardAnimationDurationUserInfoKey"] floatValue];
-    CGRect frame = [[[notification userInfo] valueForKey:@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
+    CGRect keyboardFrame = [[[notification userInfo] valueForKey:@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
     [UIView animateWithDuration:duration animations:^{
-        if(self.textfield.frame.origin.y > frame.origin.y) {
-            CGRect originView =  self.view.frame;
-            originView.origin.y -= frame.size.height;
-            self.view.frame = originView;
+        if(self.textfield.frame.origin.y + self.textfield.frame.size.height > keyboardFrame.origin.y) {
+            CGRect viewFrame =  self.view.frame;
+            if(CGPointEqualToPoint(viewFrame.origin, CGPointZero)) {
+                viewFrame.origin.y -= keyboardFrame.size.height;
+            }
+            self.view.frame = viewFrame;
         }
     }];
 }
@@ -82,8 +90,8 @@
     self.textfield.text = self.puzzleUnits[self.selected].label.text;
     self.textfield.frame = view.frame;
     [self.view addSubview:self.textfield];
-    
 }
+
 - (void) textChanged:(UITextField*)textField {
     if(textField.text.length > 1) {
         NSString *text = textField.text;
